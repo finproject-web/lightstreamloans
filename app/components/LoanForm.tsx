@@ -201,7 +201,10 @@ export default function LoanForm() {
         body: JSON.stringify(data),
       });
 
-      const json = await res.json().catch(() => ({ error: "Unknown error" }));
+      const text = await res.text();
+      console.log("Submit response:", res.status, text);
+
+      const json = JSON.parse(text);
 
       if (!res.ok) {
         throw new Error(json.error || "Submission failed");
