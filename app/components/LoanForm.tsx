@@ -235,6 +235,34 @@ export default function LoanForm() {
             <div className="form-section-content">
               <div className="form-row">
                 <div className="form-group">
+                  <label htmlFor="loanAmount">
+                    Requested Loan Amount <span className="required">*</span>
+                    <span className="field-hint">USD</span>
+                  </label>
+                  <input
+                    id="loanAmount"
+                    type="number"
+                    value={data.loanAmount}
+                    onChange={(e) => update("loanAmount", e.target.value)}
+                    onBlur={(e) => {
+                      const value = e.target.value.trim();
+                      if (!value) return;
+                      const num = Number(value);
+                      if (num < 1000) {
+                        window.alert("Requested Loan Amount must be at least $1,000.");
+                        update("loanAmount", "1000");
+                      } else if (num > 25000) {
+                        window.alert("Requested Loan Amount cannot exceed $25,000.");
+                        update("loanAmount", "25000");
+                      }
+                    }}
+                    placeholder="5000"
+                    suppressHydrationWarning
+                  />
+                </div>
+              </div>
+              <div className="form-row">
+                <div className="form-group">
                   <label htmlFor="firstName">First Name <span className="required">*</span></label>
                   <input
                     id="firstName"
@@ -374,32 +402,6 @@ export default function LoanForm() {
                     value={data.bankName}
                     onChange={(e) => update("bankName", e.target.value)}
                     placeholder="e.g. Chase, Bank of America"
-                    suppressHydrationWarning
-                  />
-                </div>
-                <div className="form-group">
-                  <label htmlFor="loanAmount">
-                    Requested Loan Amount <span className="required">*</span>
-                    <span className="field-hint">USD</span>
-                  </label>
-                  <input
-                    id="loanAmount"
-                    type="number"
-                    value={data.loanAmount}
-                    onChange={(e) => update("loanAmount", e.target.value)}
-                    onBlur={(e) => {
-                      const value = e.target.value.trim();
-                      if (!value) return;
-                      const num = Number(value);
-                      if (num < 1000) {
-                        window.alert("Requested Loan Amount must be at least $1,000.");
-                        update("loanAmount", "1000");
-                      } else if (num > 25000) {
-                        window.alert("Requested Loan Amount cannot exceed $25,000.");
-                        update("loanAmount", "25000");
-                      }
-                    }}
-                    placeholder="5000"
                     suppressHydrationWarning
                   />
                 </div>
