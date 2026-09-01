@@ -12,6 +12,7 @@ export default function Header() {
             width={200} 
             height={50}
             className="header-logo-img"
+            style={{ width: "auto", height: "auto" }}
           />
         </Link>
         <nav className="nav">

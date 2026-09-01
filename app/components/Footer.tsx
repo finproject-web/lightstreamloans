@@ -13,6 +13,7 @@ export default function Footer() {
               width={200} 
               height={50}
               className="footer-logo-img"
+              style={{ width: "auto", height: "auto" }}
             />
             <h3 className="footer-brand-text">Light Stream Loans</h3>
             <p className="footer-tagline">Trusted loans, fast</p>
