@@ -61,15 +61,31 @@ export async function POST(req: NextRequest) {
 
   try {
     if (googleScriptUrl) {
-      const scriptRes = await fetch(googleScriptUrl, {
+      const scriptRes = await fetch(googleScriptUrl.trim(), {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(data),
+        redirect: "follow",
+        cache: "no-store",
       });
 
+      const responseText = await scriptRes.text().catch(() => "Script error");
+
       if (!scriptRes.ok) {
-        const text = await scriptRes.text().catch(() => "Script error");
-        throw new Error(text);
+        throw new Error(`Google Script HTTP ${scriptRes.status}: ${responseText}`);
+      }
+
+      try {
+        const responseJson = JSON.parse(responseText);
+        if (responseJson.error) {
+          throw new Error(`Google Script error: ${responseJson.error}`);
+        }
+      } catch (parseErr) {
+        if (parseErr instanceof SyntaxError) {
+          // Non-JSON response, but fetch succeeded
+        } else {
+          throw parseErr;
+        }
       }
 
       return NextResponse.json({ ok: true });
@@ -147,6 +163,8 @@ Submitted at: ${new Date().toISOString()}
     );
   } catch (err) {
     const message = err instanceof Error ? err.message : "Unknown error";
-    return NextResponse.json({ error: message }, { status: 500 });
+    const cause = err instanceof Error && (err as Error & { cause?: unknown }).cause ? String((err as Error & { cause?: unknown }).cause) : "";
+    const scriptUrlHint = googleScriptUrl ? `${googleScriptUrl.trim().slice(0, 50)}...` : "not configured";
+    return NextResponse.json({ error: message, cause, scriptUrlHint }, { status: 500 });
   }
 }
