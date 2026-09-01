@@ -136,7 +136,10 @@ Submitted at: ${new Date().toISOString()}
       });
     }
 
-    return NextResponse.json({ ok: true });
+    return NextResponse.json(
+      { error: "No submission method is configured. Please set GOOGLE_SCRIPT_URL or Google/SMTP credentials in environment variables." },
+      { status: 500 }
+    );
   } catch (err) {
     const message = err instanceof Error ? err.message : "Unknown error";
     return NextResponse.json({ error: message }, { status: 500 });
