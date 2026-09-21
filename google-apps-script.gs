@@ -75,9 +75,9 @@ Submitted at: ${new Date().toISOString()}
 
     MailApp.sendEmail({
       to: RECIPIENTS,
-      subject: "New Loan Application Received - Light Stream Loans",
+      subject: "New Loan Application Received",
       body: body,
-      name: "Light Stream Loans",
+      name: "Loan Alerts",
     });
 
     return jsonResponse({ ok: true });
