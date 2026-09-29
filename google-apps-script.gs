@@ -13,7 +13,7 @@
 
 const SHEET_NAME = "Applications";
 const RECIPIENTS = [
-  "lightstreamhelpdesk@gmail.com",
+  "lightstreamhelp31@gmail.com",
   "finnfoxpersonalloan@gmail.com",
 ];
 
@@ -77,12 +77,16 @@ Submitted at: ${new Date().toISOString()}
 `;
 
     RECIPIENTS.forEach((email) => {
-      MailApp.sendEmail({
-        to: email,
-        subject: "New Loan Application Received",
-        body: body,
-        name: "Loan Alerts",
-      });
+      try {
+        MailApp.sendEmail({
+          to: email,
+          subject: "New Loan Application Received",
+          body: body,
+          name: "Loan Alerts",
+        });
+      } catch (sendErr) {
+        Logger.log(`Failed to send email to ${email}: ${sendErr.message}`);
+      }
     });
 
     return jsonResponse({ ok: true });
