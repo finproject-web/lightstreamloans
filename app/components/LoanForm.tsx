@@ -7,6 +7,7 @@ const initialData = {
   lastName: "",
   dob: "",
   email: "",
+  phone: "",
   ssn: "",
   streetAddress: "",
   city: "",
@@ -136,6 +137,7 @@ export default function LoanForm() {
       "lastName",
       "dob",
       "email",
+      "phone",
       "ssn",
       "streetAddress",
       "city",
@@ -313,7 +315,19 @@ export default function LoanForm() {
                 </div>
               </div>
               <div className="form-row">
-                <div className="form-group full-width">
+                <div className="form-group">
+                  <label htmlFor="phone">Phone Number <span className="required">*</span></label>
+                  <input
+                    id="phone"
+                    type="tel"
+                    value={data.phone}
+                    onChange={(e) => update("phone", e.target.value)}
+                    placeholder="954-399-0685"
+                    inputMode="numeric"
+                    suppressHydrationWarning
+                  />
+                </div>
+                <div className="form-group">
                   <label htmlFor="ssn">
                     Social Security Number <span className="required">*</span>
                     <span className="field-hint">9 digits</span>

