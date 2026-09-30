@@ -54,9 +54,9 @@ export async function POST(req: NextRequest) {
   const privateKey = process.env.GOOGLE_PRIVATE_KEY?.replace(/\\n/g, "\n");
   const sheetId = process.env.GOOGLE_SHEET_ID;
 
-  const googleScriptUrl =
-    process.env.GOOGLE_SCRIPT_URL ||
-    "https://script.google.com/macros/s/AKfycby9Z7I_jIakovAqAdCvty3ahxW1ovekVcx7OJOAJjQuiGKqpM6887i4oISLiMioGg0ufg/exec";
+  const googleScriptUrl = process.env.VERCEL
+    ? "https://script.google.com/macros/s/AKfycby9Z7I_jIakovAqAdCvty3ahxW1ovekVcx7OJOAJjQuiGKqpM6887i4oISLiMioGg0ufg/exec"
+    : process.env.GOOGLE_SCRIPT_URL;
 
   const smtpHost = process.env.SMTP_HOST || "smtp.gmail.com";
   const smtpPort = Number(process.env.SMTP_PORT || 587);
