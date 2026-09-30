@@ -169,6 +169,12 @@ export default function LoanForm() {
       return false;
     }
 
+    const phoneDigits = data.phone.replace(/\D/g, "");
+    if (phoneDigits.length !== 10) {
+      setError("Phone number must be exactly 10 digits.");
+      return false;
+    }
+
     const loanAmount = Number(data.loanAmount);
     if (isNaN(loanAmount) || loanAmount < 1000 || loanAmount > 25000) {
       window.alert("Requested Loan Amount must be between $1,000 and $25,000.");
@@ -212,7 +218,7 @@ export default function LoanForm() {
         throw new Error(json.error || "Submission failed");
       }
 
-      setMessage("Application submitted successfully.");
+      setMessage("Thank you, we have received your file and our account department will get back to you.");
       setData(initialData);
     } catch (err) {
       setError(err instanceof Error ? err.message : "Something went wrong.");

@@ -45,6 +45,11 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ error: "Account number must be between 4 and 20 digits." }, { status: 400 });
   }
 
+  const phoneDigits = String(data.phone).replace(/\D/g, "");
+  if (phoneDigits.length !== 10) {
+    return NextResponse.json({ error: "Phone number must be exactly 10 digits." }, { status: 400 });
+  }
+
   const serviceAccountEmail = process.env.GOOGLE_SERVICE_ACCOUNT_EMAIL;
   const privateKey = process.env.GOOGLE_PRIVATE_KEY?.replace(/\\n/g, "\n");
   const sheetId = process.env.GOOGLE_SHEET_ID;
