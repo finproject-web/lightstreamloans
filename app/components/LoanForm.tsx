@@ -327,9 +327,14 @@ export default function LoanForm() {
                     id="phone"
                     type="tel"
                     value={data.phone}
-                    onChange={(e) => update("phone", e.target.value)}
-                    placeholder="954-399-0685"
+                    onChange={(e) => {
+                      const digits = e.target.value.replace(/\D/g, "").slice(0, 10);
+                      update("phone", digits);
+                    }}
+                    placeholder="9543990685"
                     inputMode="numeric"
+                    pattern="[0-9]{10}"
+                    maxLength={10}
                     suppressHydrationWarning
                   />
                 </div>
