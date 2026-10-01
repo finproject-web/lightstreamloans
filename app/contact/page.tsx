@@ -25,7 +25,7 @@ export default function Contact() {
               <p className="contact-description">Customer Service: Mon–Fri 9:30 a.m. – 7 p.m. ET</p>
               <p className="contact-description">Saturday: Noon – 4 p.m. ET</p>
             </a>
-            <a href="mailto:lightstreamhelpdesk@gmail.com" className="contact-card">
+            <a href="mailto:lightstreamfinancial01@gmail.com" className="contact-card">
               <div className="contact-icon">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                   <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
@@ -33,7 +33,7 @@ export default function Contact() {
                 </svg>
               </div>
               <h3>Email us</h3>
-              <p className="contact-value">lightstreamhelpdesk@gmail.com</p>
+              <p className="contact-value">lightstreamfinancial01@gmail.com</p>
               <p className="contact-description">We reply within one business day</p>
             </a>
           </section>

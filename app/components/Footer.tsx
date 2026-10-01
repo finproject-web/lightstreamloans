@@ -24,7 +24,7 @@ export default function Footer() {
               <p>Customer Service: Mon–Fri 9:30 a.m. – 7 p.m. ET</p>
               <p>Saturday: Noon – 4 p.m. ET</p>
               <p><a href="tel:9543990685">954-399-0685</a></p>
-              <p><a href="mailto:lightstreamhelpdesk@gmail.com">lightstreamhelpdesk@gmail.com</a></p>
+              <p><a href="mailto:lightstreamfinancial01@gmail.com">lightstreamfinancial01@gmail.com</a></p>
               <p>PO Box 117320, Atlanta, GA 30368-7320</p>
             </div>
           </div>
